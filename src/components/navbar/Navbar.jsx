@@ -1,9 +1,11 @@
+// Import the required modules and styles
 "use client"
 
 import React from "react";
 import Link from "next/link";
 import styles from './navbar.module.css'
 
+// Define the Navbar component
 const Navbar = () => {
   const links = [
     {
@@ -37,23 +39,32 @@ const Navbar = () => {
       url: "/dashboard",
     },
   ];
+
   return (
     <div className={styles.container}>
-      <Link href="/" className={styles.logo}>BlogPost</Link>
+      {/* Use Link without className directly */}
+      <Link href="/">
+        <div className={styles.logo}>BlogPost</div>
+      </Link>
       <div className={styles.links}>
         {links.map((link) => (
-          <Link key={link.id} href={link.url} className={styles.link}>
-            {link.title}
+          // Use Link with passHref to pass href to the anchor tag
+          <Link key={link.id} href={link.url} passHref>
+            <div className={styles.link}>{link.title}</div>
           </Link>
         ))}
         <button
-         className={styles.logout}
-         onClick={() => {
-          console.log("logged out")
-        }}>Logout</button>
+          className={styles.logout}
+          onClick={() => {
+            console.log("logged out");
+          }}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
 };
 
+// Export the Navbar component
 export default Navbar;
